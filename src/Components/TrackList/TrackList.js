@@ -1,11 +1,39 @@
 import React from "react";
 import "./TrackList.css";
+import Track from '../Track/Track'
 
 class TrackList extends React.Component {
-  render(){
+  render(){  
+    
+    const tracks = this.props.tracks && this.props.tracks.length ? this.props.tracks : [{ id: 1,
+        name: 'Ayoo',
+        artist: 'Shatta Wale',
+        album: 'Reign'
+      },
+      { id: 2,
+        name: 'Rollies and Cigars',
+        artist: 'Sarkodie',
+        album: 'No Pressure'
+      },
+      { id: 3,
+        name: 'Nominate',
+        artist: 'Stonebwoy',
+        album: 'Anloga junction'
+      },
+      { id: 4,
+        name: 'My baby',
+        artist: 'Samini',
+        album: 'Dagati King'
+      }]
+    console.log('Tracks', tracks)
     return (
         <div className="TrackList">
-          {/*  <!-- You will add a map method that renders a set of Track components  --> */}
+          
+          {
+              tracks.map((track) => {
+                  return <Track track={track} key={track.id}/>
+              }) 
+          }
         </div>
       );
   }
