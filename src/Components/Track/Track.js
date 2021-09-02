@@ -6,20 +6,24 @@ class Track extends React.Component {
   constructor(props){
     super(props)
     this.addTrack = this.addTrack.bind(this)
+    this.removeTrack = this.removeTrack.bind(this)
     this.renderAction = this.renderAction.bind(this)
   }
   
   renderAction(){
-      const isRemoval = this.props.isRemoval
-      if(isRemoval){
-          return <button>-</button>
+      if(this.props.isRemoval){
+          return <button className="Track-action" onClick={this.removeTrack}>-</button>
       }else{
-          return <button onClick={this.addTrack}>+</button>
+          return <button className="Track-action" onClick={this.addTrack}>+</button>
       }
   }
 
   addTrack(){
     this.props.onAdd(this.props.track)
+  }
+
+  removeTrack(){
+    this.props.onRemove(this.props.track)
   }
     
   render() {
@@ -32,9 +36,7 @@ class Track extends React.Component {
              {this.props.track.album}
           </p>
         </div>
-        <button class="Track-action">
-          {/* <!-- + or - will go here --> */}
-        </button>
+        {this.renderAction()}
       </div>
     );
   }

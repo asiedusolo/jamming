@@ -28,28 +28,30 @@ class App extends React.Component {
       ],
       playlistName: "Favorite songs",
       playlistTracks: [
-        { name: "Odo", artist: "Wendy Shay", album: "Shay gang", id: 1 },
-        { name: "Hwe", artist: "Wendy Shay", album: "Shay gang", id: 2 },
+        { name: "Odo", artist: "Wendy Shay", album: "Shay gang", id: 5 },
+        { name: "Hwe", artist: "Wendy Shay", album: "Shay gang", id: 6 },
         {
           name: "Thy grace",
           artist: "Kofi Kinaata",
           album: "Team move",
-          id: 3,
+          id: 7,
         }
       ],
     };
   }
 
   addTrack(track){
-    if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+    let  tracks = this.state.playlistTracks
+    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
     }
-    this.setState({ playlistTracks: this.state.playlistTracks.concat(track)})
+    tracks.push(track)
+    this.setState({ playlistTracks: tracks})
     
   }
 
   removeTrack(track){
-    const result = this.state.playlistTracks.filter(playlist => playlist.id !== track.id)
+    let result = this.state.playlistTracks.filter(playlist => playlist.id !== track.id)
     this.setState({ playlistTracks: result})
   }
 
